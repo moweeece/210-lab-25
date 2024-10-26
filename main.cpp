@@ -22,9 +22,9 @@ void readDataSet(const string&, set<string>&);
 void sortDataVec(vector<string>&);
 void sortDataList(list<string>&);
 
-void insertData(vector<string>&, list<string>&, set<string>&);
-void insertData(vector<string>&, list<string>&, set<string>&);
-void insertData(vector<string>&, list<string>&, set<string>&);
+void insertDataVec(vector<string>&);
+void insertDataList(list<string>&);
+void insertDataSet(set<string>&);
 
 void deleteDataVec(vector<string>&);
 void deleteDataList(list<string>&);
@@ -79,41 +79,54 @@ int main() {
     auto durationSortList = duration_cast<milliseconds>(endSortList - startSortList);
 
     // Sort time output
-    cout << setw(15) << "Sort" << setw(15) << durationSortVec.count() << setw(15) << durationSortList.count() << setw(15) << durationSortSet.count() << endl;
+    int durationSortSet = 0;  // because an element is automatically sorted in a set
+    cout << setw(15) << "Sort" << setw(15) << durationSortVec.count() << setw(15) << durationSortList.count() << setw(15) << durationSortSet << endl;
 
 
     // INSERTING DATA
     // Insert Data to Vector
     auto startInsertVec = high_resolution_clock::now();
-    insertDataVec(vec1);                      // call insertData function to insert data to each container type
+    insertDataVec(vec1);                      // call insertData function to insert data to vector
     auto endInsertVec = high_resolution_clock::now();
     auto durationInsertVec = duration_cast<milliseconds>(endInsertVec - startInsertVec);
 
     // Insert Data to List
     auto startInsertList = high_resolution_clock::now();
-    insertDataList(list1);                      // call insertData function to insert data to each container type
+    insertDataList(list1);                      // call insertData function to insert data to list
     auto endInsertList = high_resolution_clock::now();
-    auto durationInsert = duration_cast<milliseconds>(endInsert - startInsert);
+    auto durationInsertList = duration_cast<milliseconds>(endInsertList - startInsertList);
 
-    // Insert Data
-    auto startInsert = high_resolution_clock::now();
-    insertData(vec1, list1, set1);                      // call insertData function to insert data to each container type
-    auto endInsert = high_resolution_clock::now();
-    auto durationInsert = duration_cast<milliseconds>(endInsert - startInsert);
+    // Insert Data to Set
+    auto startInsertSet = high_resolution_clock::now();
+    insertDataSet(set1);                      // call insertData function to insert data to set
+    auto endInsertSet = high_resolution_clock::now();
+    auto durationInsertSet = duration_cast<milliseconds>(endInsertSet - startInsertSet);
 
     // Insert time output
     cout << setw(15) << "Insert" << setw(15) << durationInsertVec.count() << setw(15) << durationInsertList.count() << setw(15) << durationInsertSet.count() << endl;
 
 
     // DELETEING DATA
-    // Delete Data
-    auto startDelete = high_resolution_clock::now();
-    deleteData(vec1, list1, set1);                     // call the deleteData function to delete data from each container type
-    auto endDelete = high_resolution_clock::now();
-    auto durationDelete = duration_cast<milliseconds>(endDelete - startDelete);
+    // Delete Data from Vector
+    auto startDeleteVec = high_resolution_clock::now();
+    deleteDataVec(vec1);                     // call the deleteData function to delete data from vector
+    auto endDeleteVec = high_resolution_clock::now();
+    auto durationDeleteVec = duration_cast<milliseconds>(endDeleteVec - startDeleteVec);
+
+     // Delete Data from List
+    auto startDeleteList = high_resolution_clock::now();
+    deleteDataList(list1);                     // call the deleteData function to delete data from list
+    auto endDeleteList = high_resolution_clock::now();
+    auto durationDeleteList = duration_cast<milliseconds>(endDeleteList - startDeleteList);
+
+     // Delete Data from Set
+    auto startDeleteSet = high_resolution_clock::now();
+    deleteDataSet(set1);                     // call the deleteData function to delete data from set
+    auto endDeleteSet = high_resolution_clock::now();
+    auto durationDeleteSet = duration_cast<milliseconds>(endDeleteSet - startDeleteSet);
 
     // Delete time output
-    cout << setw(15) << "Delete" << setw(15) << durationDelete.count() << setw(15) << durationDelete.count() << setw(15) << durationDelete.count() << endl;
+    cout << setw(15) << "Delete" << setw(15) << durationDeleteVec.count() << setw(15) << durationDeleteList.count() << setw(15) << durationDeleteSet.count() << endl;
      
 
     return 0;
