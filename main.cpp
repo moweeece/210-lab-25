@@ -120,21 +120,28 @@ void sortData(vector<string>& vecSort, list<string>& listSort)
 // function to insert data
 void insertData(vector<string>& vecInsert, list<string>& listInsert, set<string>& setInsert)
 {
-    string insert = "TESTCODE";
+    string insertCode = "TESTCODE";
     // find middle of a vector and a list
+    size_t vectorMiddleInsert = vecInsert.size() / 2;   // vector size divided by 2 for estimated middle position
+    auto listMiddleInsert = next(listInsert.begin(), listInsert.size() / 2);  // iterator traverse from the beginning of the list to the middle of the list
 
     // set inserts in the correct order so no need to find the middle
-
-
-
     
-
-
+    // insert the test code
+    vecInsert.insert(vecInsert.begin() + vectorMiddleInsert, insertCode);
+    listInsert.insert(listMiddleInsert, insertCode);
+    setInsert.insert(insertCode);
 }
 
 // function to delete data
 void deleteData(vector<string>& vecDelete, list<string>& listDelete, set<string>& setDelete)
 {
+    // find middle of a vector and a list
+    size_t vectorMiddleDelete = vecDelete.size() / 2;   // vector size divided by 2 for estimated middle position
+    auto listMiddleDelete = next(listDelete.begin(), listDelete.size() / 2);  // iterator traverse from the beginning of the list to the middle of the list
 
+    // insert the middle-ish element
+    vecDelete.erase(vecDelete.begin() + vectorMiddleDelete);
+    listDelete.erase(listMiddleDelete);
 
 }
