@@ -9,12 +9,13 @@
 #include <fstream>   // for reading files
 #include <iomanip>   // for setw()
 #include <string>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
 
 // function declarations
-void readData();
+void readData(const string&, vector<string>&, list<string>&, set<string>&);
 void sortData();
 void insertData();
 void deleteData();
@@ -33,7 +34,7 @@ int main() {
 
     // Reading Data
     auto start = high_resolution_clock::now();
-    readData();                                       // finish this code
+    readData(fileName, vec1, list1, set1);       // call readData function and pass the name of the file and each container type
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
@@ -80,6 +81,30 @@ duration.count() references elapsed milliseconds
 
 
 // reading
+void readData(const string& filename, vector<string>& vec, list<string>& list, set<string>& set)
+{
+    // open the file
+    ifstream file(filename);
+    string tempCode;
+
+    // check if file is opened
+    if (!file.is_open())
+    {
+        cerr << "Error Opening the file." << endl;
+        return;   // exit the function
+    }
+
+    // read the code from the file and insert it into each container type
+    while (file >> tempCode)
+    {
+        vec.push_back(tempCode);
+        list.push_back(tempCode);
+        set.insert(tempCode);
+    }
+
+    // close the file
+    file.close();
+}
 
 // sorting
 
