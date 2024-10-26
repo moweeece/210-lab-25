@@ -16,9 +16,9 @@ using namespace std::chrono;
 
 // function declarations
 void readData(const string&, vector<string>&, list<string>&, set<string>&);
-void sortData();
-void insertData();
-void deleteData();
+void sortData(vector<string>&, list<string>&);
+void insertData(vector<string>&, list<string>&, set<string>&);
+void deleteData(vector<string>&, list<string>&, set<string>&);
 
 
 int main() {
@@ -34,7 +34,7 @@ int main() {
 
     // Reading Data
     auto start = high_resolution_clock::now();
-    readData(fileName, vec1, list1, set1);       // call readData function and pass the name of the file and each container type
+    readData(fileName, vec1, list1, set1);               // call readData function and pass the name of the file and each container type
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
@@ -43,7 +43,7 @@ int main() {
 
     // Sort Data
     auto start = high_resolution_clock::now();
-    sortData();                                       // finish this code
+    sortData(vec1, list1);                               // call sortData function and pass vector and list (no set since set is already sorted)
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
@@ -52,7 +52,7 @@ int main() {
 
     // Insert Data
     auto start = high_resolution_clock::now();
-    insertData();                                       // finish this code
+    insertData(vec1, list1, set1);                      // call insertData function to insert data to each container type
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
@@ -61,7 +61,7 @@ int main() {
 
     // Delete Data
     auto start = high_resolution_clock::now();
-    deleteData();                                       // finish this code
+    deleteData(vec1, list1, set1);                     // call the deleteData function to delete data from each container type
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
@@ -80,8 +80,8 @@ duration.count() references elapsed milliseconds
 */
 
 
-// reading
-void readData(const string& filename, vector<string>& vec, list<string>& list, set<string>& set)
+// function to read data and add to the container
+void readData(const string& filename, vector<string>& vecRead, list<string>& listRead, set<string>& setRead)
 {
     // open the file
     ifstream file(filename);
@@ -97,17 +97,44 @@ void readData(const string& filename, vector<string>& vec, list<string>& list, s
     // read the code from the file and insert it into each container type
     while (file >> tempCode)
     {
-        vec.push_back(tempCode);
-        list.push_back(tempCode);
-        set.insert(tempCode);
+        vecRead.push_back(tempCode);
+        listRead.push_back(tempCode);
+        setRead.insert(tempCode);
     }
 
     // close the file
     file.close();
 }
 
-// sorting
+// function to sort data (only for vector and list)
+void sortData(vector<string>& vecSort, list<string>& listSort)
+{
+    // sort the vector
+    sort(vecSort.begin(), vecSort.end());
 
-// inserting
+    // sort the list
+    listSort.sort();
 
-// deleting
+}
+
+// function to insert data
+void insertData(vector<string>& vecInsert, list<string>& listInsert, set<string>& setInsert)
+{
+    string insert = "TESTCODE";
+    // find middle of a vector and a list
+
+    // set inserts in the correct order so no need to find the middle
+
+
+
+    
+
+
+}
+
+// function to delete data
+void deleteData(vector<string>& vecDelete, list<string>& listDelete, set<string>& setDelete)
+{
+
+
+}
