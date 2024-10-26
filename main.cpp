@@ -42,31 +42,31 @@ int main() {
     cout << setw(15) << "Read" << setw(15) << duration.count() << setw(15) << duration.count() << setw(15) << duration.count() << endl;
 
     // Sort Data
-    auto start = high_resolution_clock::now();
+    auto startSort = high_resolution_clock::now();
     sortData(vec1, list1);                               // call sortData function and pass vector and list (no set since set is already sorted)
-    auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto endSort = high_resolution_clock::now();
+    auto durationSort = duration_cast<milliseconds>(endSort - startSort);
 
     // Sort time output
-    cout << setw(15) << "Sort" << setw(15) << duration.count() << setw(15) << duration.count() << setw(15) << duration.count() << endl;
+    cout << setw(15) << "Sort" << setw(15) << durationSort.count() << setw(15) << durationSort.count() << setw(15) << durationSort.count() << endl;
 
     // Insert Data
-    auto start = high_resolution_clock::now();
+    auto startInsert = high_resolution_clock::now();
     insertData(vec1, list1, set1);                      // call insertData function to insert data to each container type
-    auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto endInsert = high_resolution_clock::now();
+    auto durationInsert = duration_cast<milliseconds>(endInsert - startInsert);
 
     // Insert time output
-    cout << setw(15) << "Insert" << setw(15) << duration.count() << setw(15) << duration.count() << setw(15) << duration.count() << endl;
+    cout << setw(15) << "Insert" << setw(15) << durationInsert.count() << setw(15) << durationInsert.count() << setw(15) << durationInsert.count() << endl;
 
     // Delete Data
-    auto start = high_resolution_clock::now();
+    auto startDelete = high_resolution_clock::now();
     deleteData(vec1, list1, set1);                     // call the deleteData function to delete data from each container type
-    auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto endDelete = high_resolution_clock::now();
+    auto durationDelete = duration_cast<milliseconds>(endDelete - startDelete);
 
     // Delete time output
-    cout << setw(15) << "Delete" << setw(15) << duration.count() << setw(15) << duration.count() << setw(15) << duration.count() << endl;
+    cout << setw(15) << "Delete" << setw(15) << durationDelete.count() << setw(15) << durationDelete.count() << setw(15) << durationDelete.count() << endl;
      
 
     return 0;
@@ -139,9 +139,15 @@ void deleteData(vector<string>& vecDelete, list<string>& listDelete, set<string>
     // find middle of a vector and a list
     size_t vectorMiddleDelete = vecDelete.size() / 2;   // vector size divided by 2 for estimated middle position
     auto listMiddleDelete = next(listDelete.begin(), listDelete.size() / 2);  // iterator traverse from the beginning of the list to the middle of the list
+    size_t setMiddleDelete = setDelete.size() / 2;
 
     // insert the middle-ish element
     vecDelete.erase(vecDelete.begin() + vectorMiddleDelete);
     listDelete.erase(listMiddleDelete);
+
+    // deleting an element from the set
+    auto it = setDelete.begin();   // set iterator at the beginning of the set
+    advance(it, setMiddleDelete);  // advance the iterator the middle of the set
+    setDelete.erase(it);           // erase where the iterator is
 
 }
